@@ -56,7 +56,7 @@ namespace TestTask
 
             if(db.CheckUser(login, password))
             {
-                Form form = new Form();
+                FormMain form = new FormMain();
                 this.Hide();
                 form.Show();
             }

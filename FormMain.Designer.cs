@@ -1,6 +1,6 @@
 ﻿namespace TestTask
 {
-    partial class Form
+    partial class FormMain
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -37,20 +37,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox = new System.Windows.Forms.ComboBox();
             this.panel_Modes = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.textBox_BotNumMdes = new System.Windows.Forms.TextBox();
             this.textBox_UsTipModes = new System.Windows.Forms.TextBox();
             this.textBox_NameModes = new System.Windows.Forms.TextBox();
             this.textBox_IdModes = new System.Windows.Forms.TextBox();
-            this.textBox_BotNumMdes = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button_Save = new System.Windows.Forms.Button();
+            this.button_Change = new System.Windows.Forms.Button();
+            this.button_Delete = new System.Windows.Forms.Button();
+            this.button_NewRec = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMain)).BeginInit();
             this.panel_Modes.SuspendLayout();
@@ -116,6 +116,7 @@
             this.textBox_Search.Name = "textBox_Search";
             this.textBox_Search.Size = new System.Drawing.Size(169, 27);
             this.textBox_Search.TabIndex = 4;
+            this.textBox_Search.TextChanged += new System.EventHandler(this.textBox_Search_TextChanged);
             // 
             // label1
             // 
@@ -153,15 +154,34 @@
             this.panel_Modes.Size = new System.Drawing.Size(474, 228);
             this.panel_Modes.TabIndex = 7;
             // 
-            // label2
+            // textBox_BotNumMdes
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(124, 36);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 20);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Id:";
+            this.textBox_BotNumMdes.Location = new System.Drawing.Point(157, 97);
+            this.textBox_BotNumMdes.Name = "textBox_BotNumMdes";
+            this.textBox_BotNumMdes.Size = new System.Drawing.Size(250, 20);
+            this.textBox_BotNumMdes.TabIndex = 8;
+            // 
+            // textBox_UsTipModes
+            // 
+            this.textBox_UsTipModes.Location = new System.Drawing.Point(157, 127);
+            this.textBox_UsTipModes.Name = "textBox_UsTipModes";
+            this.textBox_UsTipModes.Size = new System.Drawing.Size(250, 20);
+            this.textBox_UsTipModes.TabIndex = 9;
+            // 
+            // textBox_NameModes
+            // 
+            this.textBox_NameModes.Location = new System.Drawing.Point(157, 67);
+            this.textBox_NameModes.Name = "textBox_NameModes";
+            this.textBox_NameModes.Size = new System.Drawing.Size(250, 20);
+            this.textBox_NameModes.TabIndex = 10;
+            // 
+            // textBox_IdModes
+            // 
+            this.textBox_IdModes.Location = new System.Drawing.Point(157, 38);
+            this.textBox_IdModes.Name = "textBox_IdModes";
+            this.textBox_IdModes.ReadOnly = true;
+            this.textBox_IdModes.Size = new System.Drawing.Size(250, 20);
+            this.textBox_IdModes.TabIndex = 11;
             // 
             // label3
             // 
@@ -193,46 +213,76 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "Name:";
             // 
-            // textBox_UsTipModes
+            // label2
             // 
-            this.textBox_UsTipModes.Location = new System.Drawing.Point(157, 127);
-            this.textBox_UsTipModes.Name = "textBox_UsTipModes";
-            this.textBox_UsTipModes.Size = new System.Drawing.Size(250, 20);
-            this.textBox_UsTipModes.TabIndex = 9;
-            // 
-            // textBox_NameModes
-            // 
-            this.textBox_NameModes.Location = new System.Drawing.Point(157, 67);
-            this.textBox_NameModes.Name = "textBox_NameModes";
-            this.textBox_NameModes.Size = new System.Drawing.Size(250, 20);
-            this.textBox_NameModes.TabIndex = 10;
-            // 
-            // textBox_IdModes
-            // 
-            this.textBox_IdModes.Location = new System.Drawing.Point(157, 38);
-            this.textBox_IdModes.Name = "textBox_IdModes";
-            this.textBox_IdModes.Size = new System.Drawing.Size(250, 20);
-            this.textBox_IdModes.TabIndex = 11;
-            // 
-            // textBox_BotNumMdes
-            // 
-            this.textBox_BotNumMdes.Location = new System.Drawing.Point(157, 97);
-            this.textBox_BotNumMdes.Name = "textBox_BotNumMdes";
-            this.textBox_BotNumMdes.Size = new System.Drawing.Size(250, 20);
-            this.textBox_BotNumMdes.TabIndex = 8;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(124, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 20);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Id:";
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.button_Save);
+            this.panel1.Controls.Add(this.button_Change);
+            this.panel1.Controls.Add(this.button_Delete);
+            this.panel1.Controls.Add(this.button_NewRec);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Location = new System.Drawing.Point(531, 377);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(223, 228);
             this.panel1.TabIndex = 8;
+            // 
+            // button_Save
+            // 
+            this.button_Save.AutoSize = true;
+            this.button_Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_Save.Location = new System.Drawing.Point(52, 163);
+            this.button_Save.Name = "button_Save";
+            this.button_Save.Size = new System.Drawing.Size(123, 30);
+            this.button_Save.TabIndex = 4;
+            this.button_Save.Text = "Сохранить";
+            this.button_Save.UseVisualStyleBackColor = true;
+            this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
+            // 
+            // button_Change
+            // 
+            this.button_Change.AutoSize = true;
+            this.button_Change.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_Change.Location = new System.Drawing.Point(52, 127);
+            this.button_Change.Name = "button_Change";
+            this.button_Change.Size = new System.Drawing.Size(123, 30);
+            this.button_Change.TabIndex = 3;
+            this.button_Change.Text = "Изменить";
+            this.button_Change.UseVisualStyleBackColor = true;
+            this.button_Change.Click += new System.EventHandler(this.button_Change_Click);
+            // 
+            // button_Delete
+            // 
+            this.button_Delete.AutoSize = true;
+            this.button_Delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_Delete.Location = new System.Drawing.Point(52, 91);
+            this.button_Delete.Name = "button_Delete";
+            this.button_Delete.Size = new System.Drawing.Size(123, 30);
+            this.button_Delete.TabIndex = 2;
+            this.button_Delete.Text = "Удалить";
+            this.button_Delete.UseVisualStyleBackColor = true;
+            this.button_Delete.Click += new System.EventHandler(this.button_Delete_Click);
+            // 
+            // button_NewRec
+            // 
+            this.button_NewRec.AutoSize = true;
+            this.button_NewRec.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_NewRec.Location = new System.Drawing.Point(52, 52);
+            this.button_NewRec.Name = "button_NewRec";
+            this.button_NewRec.Size = new System.Drawing.Size(123, 33);
+            this.button_NewRec.TabIndex = 1;
+            this.button_NewRec.Text = "Новая запись";
+            this.button_NewRec.UseVisualStyleBackColor = true;
+            this.button_NewRec.Click += new System.EventHandler(this.button_NewRec_Click);
             // 
             // label6
             // 
@@ -244,51 +294,7 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Управление записями:";
             // 
-            // button1
-            // 
-            this.button1.AutoSize = true;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(52, 52);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 33);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Новая запись";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.AutoSize = true;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(52, 91);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(123, 30);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Удалить";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.AutoSize = true;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(52, 127);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(123, 30);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Изменить";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.AutoSize = true;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button4.Location = new System.Drawing.Point(52, 163);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(123, 30);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Сохранить";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // Form
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -302,7 +308,7 @@
             this.Controls.Add(this.dataGridViewMain);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form";
+            this.Name = "FormMain";
             this.Text = "Работа с БД";
             this.Load += new System.EventHandler(this.Form_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -337,10 +343,10 @@
         private System.Windows.Forms.TextBox textBox_NameModes;
         private System.Windows.Forms.TextBox textBox_IdModes;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_Save;
+        private System.Windows.Forms.Button button_Change;
+        private System.Windows.Forms.Button button_Delete;
+        private System.Windows.Forms.Button button_NewRec;
         private System.Windows.Forms.Label label6;
     }
 }

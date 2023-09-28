@@ -95,7 +95,7 @@ namespace TestTask
                         {
                             while (reader.Read())
                             {
-                                Form form = new Form();
+                                FormMain form = new FormMain();
                                 form.ReadSingleRowModes(dgv, reader);
                             }
                         }
@@ -107,7 +107,7 @@ namespace TestTask
                         {
                             while (reader.Read())
                             {
-                                Form form = new Form();
+                                FormMain form = new FormMain();
                                 form.ReadSingleRowSteps(dgv, reader);
                             }
                         }
@@ -115,6 +115,95 @@ namespace TestTask
                 }
 
 
+            }
+        }
+
+        public void AddNewRecord(string name, int maxBottleNumber, int maxUsedTips)
+        {
+            using (var connection = new SQLiteConnection("Data Source=mainDB.db"))
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand();
+                command.Connection = connection;
+                command.CommandText = $"INSERT INTO Modes (Name, MaxBottleNumber, MaxUsedTips) VALUES ('{name}', {maxBottleNumber}, {maxUsedTips})";
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void Search(DataGridView dgv, string text, int sheet)
+        {
+            dgv.Rows.Clear();
+
+            using(var connection = new SQLiteConnection("Data Source=mainDB.db"))
+            {
+                connection.Open();
+                string querryModes = $"SELECT * FROM Modes WHERE  (Id || Name || MaxBottleNumber || MaxUsedTips) LIKE '%" + text + "%'";
+                string querrySteps = $"SELECT * FROM Steps WHERE  (Id || ModeId || Timer || Destination || Speed || Type || Volume) LIKE '%" + text + "%'";
+                SQLiteCommand command = new SQLiteCommand();
+                command.Connection = connection;
+                switch (sheet)
+                {
+                    case 0:
+                        command.CommandText = querryModes;
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                FormMain formMain = new FormMain();
+                                formMain.ReadSingleRowModes(dgv, reader);
+                            }
+                        }
+                        break;
+
+                     case 1:
+                        command.CommandText = querrySteps;
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                FormMain formMain = new FormMain();
+                                formMain.ReadSingleRowSteps(dgv, reader);
+                            }
+                        }
+                        break;
+                }
+            }
+
+        }
+
+        public void DeleteRecord(int id, int sheet)
+        {
+            using (var connection = new SQLiteConnection("Data Source=mainDB.db"))
+            {
+                connection.Open();
+                string querryModes = $"DELETE FROM Modes WHERE Id = {id}";
+                string querrySteps = $"DELETE FROM Steps WHERE Id = {id}";
+                SQLiteCommand command = new SQLiteCommand();
+                command.Connection = connection;
+                switch (sheet)
+                {
+                    case 0:
+                        command.CommandText = querryModes;
+                        command.ExecuteNonQuery();
+                        break;
+
+                    case 1:
+                        command.CommandText = querrySteps;
+                        command.ExecuteNonQuery();
+                        break;
+                }
+            }
+        }
+
+        public void UpdateRecords(int id, string name, int bottle, int tips)
+        {
+            using (var connection = new SQLiteConnection("Data Source=mainDB.db"))
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand();
+                command.Connection = connection;
+                command.CommandText = $"UPDATE Modes SET Name = '{name}', MaxBottleNumber = {bottle}, MaxUsedTips = {tips} WHERE Id = {id} ";
+                command.ExecuteNonQuery();
             }
         }
 
