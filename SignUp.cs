@@ -111,5 +111,9 @@ namespace TestTask
         private bool isLetter = false;
         private bool isDigit = false;
 
+        private void SignUp_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

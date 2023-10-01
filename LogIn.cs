@@ -75,5 +75,9 @@ namespace TestTask
 
         private DataBase db = new DataBase();
 
+        private void LogIn_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

@@ -173,6 +173,7 @@
             this.Controls.Add(this.label1);
             this.Name = "SignUp";
             this.Text = "Регистрация";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SignUp_FormClosing);
             this.Load += new System.EventHandler(this.SignUp_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOpen)).EndInit();

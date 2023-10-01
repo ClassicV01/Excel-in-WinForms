@@ -174,6 +174,7 @@
             this.Controls.Add(this.label1);
             this.Name = "LogIn";
             this.Text = "Авторизация";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LogIn_FormClosing);
             this.Load += new System.EventHandler(this.LogIn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOpen)).EndInit();

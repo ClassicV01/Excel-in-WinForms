@@ -39,7 +39,13 @@ namespace TestTask
                 return;
             }
 
-            db.AddNewRecord(name, botN, tipN);
+            if(name == string.Empty)
+            {
+                MessageBox.Show("Неверный формат данных Name!", "Неверный формат!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            db.AddNewRecordModes(name, botN, tipN);
 
             MessageBox.Show("Запись успешно добавлена!", "Запись добавлена!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Hide();

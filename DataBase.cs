@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Windows.Forms;
+using Aspose.Cells;
 
 namespace TestTask
 {
@@ -118,7 +119,7 @@ namespace TestTask
             }
         }
 
-        public void AddNewRecord(string name, int maxBottleNumber, int maxUsedTips)
+        public void AddNewRecordModes(string name, int maxBottleNumber, int maxUsedTips)
         {
             using (var connection = new SQLiteConnection("Data Source=mainDB.db"))
             {
@@ -126,6 +127,19 @@ namespace TestTask
                 SQLiteCommand command = new SQLiteCommand();
                 command.Connection = connection;
                 command.CommandText = $"INSERT INTO Modes (Name, MaxBottleNumber, MaxUsedTips) VALUES ('{name}', {maxBottleNumber}, {maxUsedTips})";
+                command.ExecuteNonQuery();
+            }
+        }
+        public void AddNewRecordSteps(int modeId, int timer, string dest, int speed, string type, int vol)
+        {
+            using (var connection = new SQLiteConnection("Data Source=mainDB.db"))
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand();
+                command.Connection = connection;
+                command.CommandText = $@"INSERT INTO Steps (ModeId, Timer, Destination, Speed, Type, Volume) VALUES
+                                                            ('{modeId}', {timer}, '{dest}', 
+                                                            {speed},'{type}', {vol})";
                 command.ExecuteNonQuery();
             }
         }
@@ -195,7 +209,7 @@ namespace TestTask
             }
         }
 
-        public void UpdateRecords(int id, string name, int bottle, int tips)
+        public void UpdateRecordsModes(int id, string name, int bottle, int tips)
         {
             using (var connection = new SQLiteConnection("Data Source=mainDB.db"))
             {
@@ -206,6 +220,61 @@ namespace TestTask
                 command.ExecuteNonQuery();
             }
         }
+
+        public void UpdateRecordsSteps(int id, int modeId, int timer, string dest, int speed, string type, int vol)
+        {
+            using (var connection = new SQLiteConnection("Data Source=mainDB.db"))
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand();
+                command.Connection = connection;
+                command.CommandText = $@"UPDATE Steps SET ModeId = '{modeId}', Timer = {timer}, Destination = '{dest}', 
+                                            Speed = {speed}, Type = '{type}', Volume = {vol} WHERE Id = {id} ";
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public bool AddDataFromExcel(int rows, int columns, Worksheet ws)
+        {
+            using (var connection = new SQLiteConnection("Data Source=mainDB.db"))
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand();
+                command.Connection = connection;
+
+                switch(columns)
+                {
+                    case 4:
+                        for (int i = 1; i < rows; i++)
+                        {
+                            for(int j = 0; j < columns; j+= 4)
+                            {
+                                command.CommandText = $@"INSERT INTO Modes (Name, MaxBottleNumber, MaxUsedTips) VALUES 
+                                                        ('{ws.Cells[i,j + 1].Value}', {ws.Cells[i, j + 2].Value}, {ws.Cells[i, j + 3].Value})";
+                                command.ExecuteNonQuery();
+                            }
+                        }
+                        return true;
+
+                    case 7:
+                        for (int i = 1; i < rows; i++)
+                        {
+                            for (int j = 0; j < columns; j += 7)
+                            {
+                                command.CommandText = $@"INSERT INTO Steps (ModeId, Timer, Destination, Speed, Type, Volume) VALUES
+                                                            ('{ws.Cells[i, j + 1].Value}', {ws.Cells[i, j + 2].Value}, '{ws.Cells[i, j + 3].Value}', 
+                                                            {ws.Cells[i, j + 2].Value},'{ws.Cells[i, j + 2].Value}', {ws.Cells[i, j + 2].Value})";
+                                command.ExecuteNonQuery();
+                            }
+                        }
+                        return true;
+
+                    default: 
+                        return false;
+                }
+            }
+        }
+
 
     }
 }
